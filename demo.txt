@@ -1,0 +1,240 @@
+Demo of UnixLs
+
+Tests on the working directory of UnixLs:
+(Note: unixlink, linktoathing.c, and 'test' directory have been deleted for assignment submission)
+
+family:cmpt300_assignment4 $ ./UnixLs
+UnixLs
+Makefile
+test
+linktoathing.c
+driver.c
+unixlink
+infodemo.c
+infodemo.h
+UnixLs.c
+demo.txt
+readme.txt
+UnixLs.h
+family:cmpt300_assignment4 $ ./UnixLs -li
+5505032 -rwxr-xr-x  1 family family 26800 Dec  6 2020 20:16 UnixLs
+5508271 -rw-r--r--  1 family family    80 Dec  4 2020 00:31 Makefile
+5513257 drwxr-xr-x  3 family family  4096 Dec  6 2020 20:17 test
+5505068 lrwxrwxrwx  1 family family    18 Dec  6 2020 20:21 linktoathing.c -> test/more/athing.c
+5508230 -rw-r--r--  1 family family  2295 Dec  4 2020 21:34 driver.c
+5505064 lrwxrwxrwx  1 family family     6 Dec  6 2020 20:18 unixlink -> UnixLs
+2490774 -rw-rw-r--  1 family family   780 Dec  3 2020 23:33 infodemo.c
+5508273 -rw-r--r--  1 family family   150 Dec  3 2020 18:36 infodemo.h
+5508274 -rw-r--r--  1 family family  7278 Dec  6 2020 20:03 UnixLs.c
+5505037 -rw-r--r--  1 family family  7512 Dec  6 2020 20:20 demo.txt
+5505041 -rw-r--r--  1 family family  1698 Dec  6 2020 20:15 readme.txt
+5508275 -rw-r--r--  1 family family   548 Dec  5 2020 18:00 UnixLs.h
+family:cmpt300_assignment4 $ ./UnixLs -R
+.:
+UnixLs
+Makefile
+test
+linktoathing.c
+driver.c
+unixlink
+infodemo.c
+infodemo.h
+UnixLs.c
+demo.txt
+readme.txt
+UnixLs.h
+
+./test:
+test.txt
+more
+
+./test/more:
+athing.c
+family:cmpt300_assignment4 $ ./UnixLs -RliiiiRRRllllll
+.:
+5505032 -rwxr-xr-x  1 family family 26800 Dec  6 2020 20:16 UnixLs
+5508271 -rw-r--r--  1 family family    80 Dec  4 2020 00:31 Makefile
+5513257 drwxr-xr-x  3 family family  4096 Dec  6 2020 20:17 test
+5505068 lrwxrwxrwx  1 family family    18 Dec  6 2020 20:21 linktoathing.c -> test/more/athing.c
+5508230 -rw-r--r--  1 family family  2295 Dec  4 2020 21:34 driver.c
+5505064 lrwxrwxrwx  1 family family     6 Dec  6 2020 20:18 unixlink -> UnixLs
+2490774 -rw-rw-r--  1 family family   780 Dec  3 2020 23:33 infodemo.c
+5508273 -rw-r--r--  1 family family   150 Dec  3 2020 18:36 infodemo.h
+5508274 -rw-r--r--  1 family family  7278 Dec  6 2020 20:03 UnixLs.c
+5505037 -rw-r--r--  1 family family  7516 Dec  6 2020 20:22 demo.txt
+5505041 -rw-r--r--  1 family family  1698 Dec  6 2020 20:15 readme.txt
+5508275 -rw-r--r--  1 family family   548 Dec  5 2020 18:00 UnixLs.h
+
+./test:
+5505062 -rw-r--r--  1 family family   139 Dec  6 2020 20:17 test.txt
+5513259 drwxr-xr-x  2 family family  4096 Dec  6 2020 20:17 more
+
+./test/more:
+5505035 -rw-r--r--  1 family family    40 Dec  6 2020 20:17 athing.c
+family:cmpt300_assignment4 $ ./UnixLs -z
+UnixLs: invalid option -- 'z'
+Try reading the assignment description for more information.
+family:cmpt300_assignment4 $ ./UnixLs -l blerg
+UnixLs: cannot access 'blerg': No such file or directory
+family:cmpt300_assignment4 $ ./UnixLs test
+test.txt
+more
+
+Test on a restricted directory:
+
+family:cmpt300_assignment4 $ ./UnixLs /var/tmp/systemd-private-44d6b8d7ee8d42b8ac3ceb57f683a664-ModemManager.service-lTm8gs
+UnixLs: cannot open directory '/var/tmp/systemd-private-44d6b8d7ee8d42b8ac3ceb57f683a664-ModemManager.service-lTm8gs': Permission denied
+
+Tests on non current working directories:
+
+family:cmpt300_assignment4 $ ./UnixLs -l ../cmpt300_assignment2
+-rw-r--r--  1 family family  8704 Oct  5 2020 15:03 list.o
+-rw-r--r--  1 family family   203 Oct 26 2020 21:40 Makefile
+-rw-r--r--  1 family family  5821 Oct 26 2020 21:41 list.h
+-rw-r--r--  1 family family  2075 Oct 26 2020 21:05 driver.c
+-rw-r--r--  1 family family   645 Oct 26 2020 21:42 README.md
+-rw-r--r--  1 family family  4217 Oct 26 2020 21:22 boss.c
+-rw-r--r--  1 family family  2293 Oct 26 2020 21:25 write.c
+-rw-r--r--  1 family family   494 Oct 26 2020 14:01 boss.h
+-rw-r--r--  1 family family  2797 Oct 26 2020 15:53 receive.c
+-rw-r--r--  1 family family   463 Oct 26 2020 13:57 receive.h
+-rw-r--r--  1 family family  1520 Oct 26 2020 21:30 send.c
+-rw-r--r--  1 family family   425 Oct 26 2020 13:46 send.h
+-rw-r--r--  1 family family   261 Oct 26 2020 13:57 read.h
+-rw-r--r--  1 family family   904 Oct 26 2020 21:25 read.c
+-rw-r--r--  1 family family   333 Oct 26 2020 13:47 write.h
+family:cmpt300_assignment4 $ ./UnixLs -l /usr/lib/libqmi/
+-rwxr-xr-x  1 root root 10440 Mar 20 2019 06:28 qmi-proxy
+family:cmpt300_assignment4 $ ./UnixLs ~/Documents/Projects/ test
+/home/family/Documents/Projects/:
+cmpt300_assignment3
+RISCV-Lab-7
+C-Lab-3
+C-Lab-2
+lab-0-trevorbonas
+assignment-2-trevorbonas
+RISCV-Lab-6
+RISCV-Lab-8
+assignment-4-trevorbonas
+cmpt300_assignment4
+cmpt300_assignment2
+assignment-6-trevorbonas
+assignment-5-trevorbonas
+cmpt300_assignment1
+assignment-3-trevorbonas
+C-Lab-1
+assignment-1-trevorbonas
+
+test:
+test.txt
+more
+family:cmpt300_assignment4 $ ./UnixLs ~/Documents/Projects/cmpt300_assignment1 ~/Documents/Projects/cmpt300_assignment2 ~/Documents/Projects/cmpt300_assignment3 ~/Documents/Projects/cmpt300_assignment4
+/home/family/Documents/Projects/cmpt300_assignment1:
+list_test
+Makefile
+tlist.c
+driver.c
+test_output.txt
+tlist.h
+
+/home/family/Documents/Projects/cmpt300_assignment2:
+list.o
+Makefile
+list.h
+driver.c
+README.md
+boss.c
+write.c
+boss.h
+receive.c
+receive.h
+send.c
+send.h
+read.h
+read.c
+write.h
+
+/home/family/Documents/Projects/cmpt300_assignment3:
+list.o
+Makefile
+list.h
+driver.c
+pcb.c
+pcb.h
+help.txt
+README.txt
+
+/home/family/Documents/Projects/cmpt300_assignment4:
+UnixLs
+Makefile
+test
+linktoathing.c
+driver.c
+unixlink
+infodemo.c
+infodemo.h
+UnixLs.c
+demo.txt
+readme.txt
+UnixLs.h
+family:cmpt300_assignment4 $ ./UnixLs ~/Documents/Projects -l
+cmpt300_assignment3
+RISCV-Lab-7
+C-Lab-3
+C-Lab-2
+lab-0-trevorbonas
+assignment-2-trevorbonas
+RISCV-Lab-6
+RISCV-Lab-8
+assignment-4-trevorbonas
+cmpt300_assignment4
+cmpt300_assignment2
+assignment-6-trevorbonas
+assignment-5-trevorbonas
+cmpt300_assignment1
+assignment-3-trevorbonas
+C-Lab-1
+assignment-1-trevorbonas
+UnixLs: options must be put before directory or file
+family:cmpt300_assignment4 $ ./UnixLs ~/Documents/Projects /blerg test /humptydumpty ~/Documents/Projects/cmpt300_assignment2
+/home/family/Documents/Projects:
+cmpt300_assignment3
+RISCV-Lab-7
+C-Lab-3
+C-Lab-2
+lab-0-trevorbonas
+assignment-2-trevorbonas
+RISCV-Lab-6
+RISCV-Lab-8
+assignment-4-trevorbonas
+cmpt300_assignment4
+cmpt300_assignment2
+assignment-6-trevorbonas
+assignment-5-trevorbonas
+cmpt300_assignment1
+assignment-3-trevorbonas
+C-Lab-1
+assignment-1-trevorbonas
+
+UnixLs: cannot access '/blerg': No such file or directory
+test:
+test.txt
+more
+
+UnixLs: cannot access '/humptydumpty': No such file or directory
+/home/family/Documents/Projects/cmpt300_assignment2:
+list.o
+Makefile
+list.h
+driver.c
+README.md
+boss.c
+write.c
+boss.h
+receive.c
+receive.h
+send.c
+send.h
+read.h
+read.c
+write.h
